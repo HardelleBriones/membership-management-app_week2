@@ -15,6 +15,7 @@ import { BasicAdminSginUpSchema, BasicAdminSginUp } from "../models/Admin";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { NavLink } from "react-router-dom";
 export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -193,9 +194,9 @@ export default function SignUp() {
                 </Button>
                 <Grid container justifyContent="flex-end">
                   <Grid item>
-                    <Link href="/signin" variant="body2">
+                    <NavLink to="/signin" className="text-blue-700">
                       Already have an account? Sign in
-                    </Link>
+                    </NavLink>
                   </Grid>
                 </Grid>
               </Box>

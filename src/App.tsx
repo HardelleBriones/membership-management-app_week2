@@ -21,7 +21,6 @@ function App() {
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/members/:id" element={<MemberProfile />} />
           <Route path="/admin" element={<AdminProfile />} />
-          {/* <Route path="/signin" element={<SignIn />} /> */}
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
