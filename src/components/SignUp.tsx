@@ -54,6 +54,8 @@ export default function SignUp() {
       id: data.user?.id,
       username: adminData.username,
       full_name: adminData.full_name,
+      email: email,
+      password: password,
     };
 
     const { error: profileError } = await supabase
