@@ -11,8 +11,6 @@ export const fetchMembers = async (status: string) => {
 
   if (error) {
     console.error("Error fetching data:", error);
-  } else {
-    console.log(data);
   }
 
   return data;
@@ -42,9 +40,7 @@ export const getMemberProfile = async (id: number) => {
 
   if (error) {
     console.error("Error fetching member profile:", error);
-  } else {
-    console.log(data);
-  }
+  } 
   return data;
 };
 
@@ -59,9 +55,7 @@ export const updateMemberProfile = async (
 
   if (error) {
     console.error("Error fetching member profile:", error);
-  } else {
-    console.log(data);
-  }
+  } 
   return data;
 };
 
