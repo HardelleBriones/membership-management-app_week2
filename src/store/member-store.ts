@@ -1,10 +1,6 @@
 import { create } from "zustand";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import {
-  fetchMembers,
-  getMemberProfile,
-  updateMemberProfile,
-} from "../services/members";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMembers, getMemberProfile } from "../services/members";
 
 export const useMemberStore = create(() => ({
   fetchMembers: (status: string) => {
