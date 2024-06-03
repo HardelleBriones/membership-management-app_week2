@@ -61,6 +61,7 @@ export default function SignUp() {
     const { error: profileError } = await supabase
       .from("profiles")
       .upsert(profileData)
+      .eq("id", profileData.id)
       .single();
 
     if (profileError) {
