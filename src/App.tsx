@@ -13,7 +13,6 @@ function App() {
     <>
       <Routes>
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
 
         <Route path="/" element={<NavBar />}>
           <Route index element={<DisplayMembers />} />
@@ -23,6 +22,7 @@ function App() {
           <Route path="/admin" element={<AdminProfile />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );
