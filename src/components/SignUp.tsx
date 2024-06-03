@@ -68,7 +68,7 @@ export default function SignUp() {
       setErrorMessage(profileError.message);
       throw new Error(profileError.message);
     }
-    navigate("/login");
+    navigate("/");
   };
 
   return (
