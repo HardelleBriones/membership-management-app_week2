@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddMember from "./components/AddMember";
 import DisplayMembers from "./components/DisplayMembers";
-// import HomePage from "./Pages/HomePage";
 import MemberProfile from "./components/MemberProfile";
 import NotFoundPage from "./Pages/NotFoundPage";
 import SignIn from "./components/SignIn";
@@ -12,17 +11,17 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/signin" element={<SignIn />} />
-
         <Route path="/" element={<NavBar />}>
           <Route index element={<DisplayMembers />} />
-
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/members/:id" element={<MemberProfile />} />
           <Route path="/admin" element={<AdminProfile />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
