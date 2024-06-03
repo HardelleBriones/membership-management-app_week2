@@ -7,22 +7,25 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import AdminProfile from "./components/AdminProfile";
+import { BrowserRouter } from "react-router-dom";
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<NavBar />}>
-          <Route index element={<DisplayMembers />} />
-          <Route path="/add-member" element={<AddMember />} />
-          <Route path="/members/:id" element={<MemberProfile />} />
-          <Route path="/admin" element={<AdminProfile />} />
-        </Route>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavBar />}>
+            <Route index element={<DisplayMembers />} />
+            <Route path="/add-member" element={<AddMember />} />
+            <Route path="/members/:id" element={<MemberProfile />} />
+            <Route path="/admin" element={<AdminProfile />} />
+          </Route>
 
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
