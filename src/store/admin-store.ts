@@ -1,22 +1,19 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { UserState } from "../interface/userTypes";
 
-const getUserFromLocalStorage = () => {
-  const storedUser = localStorage.getItem("user");
-  return storedUser ? JSON.parse(storedUser) : null;
-};
-
-const useAdminStore = create<UserState>((set) => ({
-  user: getUserFromLocalStorage(),
-  isAuthenticated: false,
-  login: (user) => {
-    set({ user, isAuthenticated: true });
-    localStorage.setItem("user", JSON.stringify(user));
-  },
-  logout: () => {
-    set({ user: null, isAuthenticated: false });
-    localStorage.removeItem("user");
-  },
-}));
+const useAdminStore = create<UserState>()(
+  persist(
+    (set) => ({
+      user: null,
+      isAuthenticated: false,
+      login: (user) => set({ user: user, isAuthenticated: true }),
+      logout: () => set({ user: null, isAuthenticated: false }),
+    }),
+    {
+      name: "admin",
+    },
+  ),
+);
 
 export default useAdminStore;
