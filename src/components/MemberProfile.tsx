@@ -9,9 +9,9 @@ import { Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar } from "@mui/material";
-import { useEditMember } from "../hooks/useEditMember";
-import { useDeleteMember } from "../hooks/useDeleteMember";
-import { useGetMember } from "../hooks/useGetMember";
+import { useEditMember } from "../hooks/members/useEditMember";
+import { useDeleteMember } from "../hooks/members/useDeleteMember";
+import { useGetMember } from "../hooks/members/useGetMember";
 import { useNavigate } from "react-router-dom";
 import {
   DisplayMemberEditWithAddress,

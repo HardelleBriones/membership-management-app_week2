@@ -9,7 +9,7 @@ import { TbFaceIdError } from "react-icons/tb";
 import useAdminStore from "../store/admin-store";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useFetchMembers } from "../hooks/useFetchMembers";
+import { useFetchMembers } from "../hooks/members/useFetchMembers";
 
 const DisplayMembers = () => {
   type StatusType = "Active" | "Pending" | "Inactive" | "Suspended" | "";

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateMemberProfile } from "../services/members";
+import { updateMemberProfile } from "../../services/members";
 
 export const useEditMember = () => {
   // Query client

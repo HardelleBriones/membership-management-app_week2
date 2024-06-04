@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchMembers } from "../services/members";
+import { fetchMembers } from "../../services/members";
 
 type StatusType = "Active" | "Pending" | "Inactive" | "Suspended" | "";
 

@@ -14,7 +14,7 @@ import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import useAdminStore from "../store/admin-store";
-import { useAddMember } from "../hooks/useAddMember";
+import { useAddMember } from "../hooks/members/useAddMember";
 
 const AddMember = () => {
   const navigate = useNavigate();
