@@ -10,6 +10,7 @@ import { BasicAdmin, BasicAdminSchema } from "../models/Admin";
 import useAdminStore from "../store/admin-store";
 import { UserInfoNoId, UserInfo } from "../interface/userTypes";
 import { updateAdminProfile } from "../services/admin";
+
 const AdminProfile = () => {
   dayjs.extend(utc);
   const { login, user } = useAdminStore();

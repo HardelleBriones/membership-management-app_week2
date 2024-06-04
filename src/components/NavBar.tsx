@@ -11,6 +11,7 @@ import { ListItemIcon, Divider, Menu, MenuItem } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import useAdminStore from "../store/admin-store";
 import { useNavigate } from "react-router-dom";
+
 const NavBar = () => {
   const { logout, user } = useAdminStore();
 
