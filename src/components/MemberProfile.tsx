@@ -13,6 +13,7 @@ import { Avatar } from "@mui/material";
 import { useMemberStore } from "../store/member-store";
 import { useEditMember } from "../hooks/useEditMember";
 import { useDeleteMember } from "../hooks/useDeleteMember";
+import { useGetMember } from "../hooks/useGetMember";
 import { useNavigate } from "react-router-dom";
 import {
   DisplayMemberEditWithAddress,
@@ -24,8 +25,7 @@ const MemberProfile = () => {
 
   const navigate = useNavigate();
 
-  const { getProfile } = useMemberStore();
-  const memberProfile = getProfile(Number(id));
+  const memberProfile = useGetMember(Number(id));
 
   const editMemberMutation = useEditMember();
   const handleOnSubmit = async (
