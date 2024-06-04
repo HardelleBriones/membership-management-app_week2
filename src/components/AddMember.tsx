@@ -6,9 +6,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useMutation } from "@tanstack/react-query";
-import { addMember } from "../services/members";
-import { useQueryClient } from "@tanstack/react-query";
 import {
   MemberFormSchemaWithAddress,
   MemberFormWithAddress,
@@ -17,14 +14,12 @@ import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import useAdminStore from "../store/admin-store";
+import { useAddMember } from "../hooks/useAddMember";
+
 const AddMember = () => {
   const navigate = useNavigate();
 
-  // Query client
-  const queryClient = useQueryClient();
-
   const { user } = useAdminStore();
-
   if (!user) {
     navigate("/signin");
   }
@@ -38,14 +33,7 @@ const AddMember = () => {
     resolver: zodResolver(MemberFormSchemaWithAddress),
   });
 
-  // Mutation to add a new member
-  const newMemberMutation = useMutation({
-    mutationFn: addMember,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["members"] });
-    },
-  });
-
+  const newMemberMutation = useAddMember();
   const handleOnSubmit = async (newMember: MemberFormWithAddress) => {
     try {
       await newMemberMutation.mutateAsync(newMember);
@@ -65,8 +53,8 @@ const AddMember = () => {
         sx={{ pt: 10 }}
       >
         <Box
-          width={400} // Define the width of the square
-          bgcolor="#f5f5f5" // Light grey background color
+          width={400}
+          bgcolor="#f5f5f5"
           display="flex"
           flexDirection="column"
           alignItems="flex-start"
@@ -144,9 +132,7 @@ const AddMember = () => {
               <Select
                 labelId="status-filter-label"
                 id="status-filter"
-                // value={statusFilter}
                 label="Status"
-                // onChange={handleStatusChange}
                 {...register("status")}
                 defaultValue=""
               >
