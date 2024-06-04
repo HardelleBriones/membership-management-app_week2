@@ -11,9 +11,8 @@ import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar } from "@mui/material";
 import { useMemberStore } from "../store/member-store";
-import { updateMemberProfile } from "../services/members";
-import { deleteMember } from "../services/members";
-import { useMutation } from "@tanstack/react-query";
+import { useEditMember } from "../hooks/useEditMember";
+import { useDeleteMember } from "../hooks/useDeleteMember";
 import { useNavigate } from "react-router-dom";
 import {
   DisplayMemberEditWithAddress,
@@ -28,17 +27,7 @@ const MemberProfile = () => {
   const { getProfile } = useMemberStore();
   const memberProfile = getProfile(Number(id));
 
-  // Query client
-  const queryClient = useQueryClient();
-
-  // Mutation to edit a member
-  const editMemberMutation = useMutation({
-    mutationFn: updateMemberProfile,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["members"] });
-    },
-  });
-
+  const editMemberMutation = useEditMember();
   const handleOnSubmit = async (
     memberUpdateData: DisplayMemberEditWithAddressType,
   ) => {
@@ -53,14 +42,7 @@ const MemberProfile = () => {
     }
   };
 
-  //  Mutation to delete a member
-  const deleteMemberMutation = useMutation({
-    mutationFn: deleteMember,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["members"] });
-    },
-  });
-
+  const deleteMemberMutation = useDeleteMember();
   const handleOnDelete = async () => {
     try {
       const confirmed = window.confirm(
