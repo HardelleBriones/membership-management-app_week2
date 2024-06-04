@@ -3,21 +3,20 @@ import { Card, CardHeader, CardContent } from "@mui/material";
 import { Typography, Avatar, Button } from "@mui/material";
 import { Box } from "@mui/material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useMemberStore } from "../store/member-store";
 import { SelectChangeEvent } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import { TbFaceIdError } from "react-icons/tb";
 import useAdminStore from "../store/admin-store";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useFetchMembers } from "../hooks/useFetchMembers";
 
 const DisplayMembers = () => {
   type StatusType = "Active" | "Pending" | "Inactive" | "Suspended" | "";
   const [status, setStatus] = useState<StatusType>("");
-  const [searchValue, setSearchValue] = useState("");
-
-  const { fetchMembers } = useMemberStore();
-  const membersQuery = fetchMembers(status);
+  const handleStatusChange = (event: SelectChangeEvent<StatusType>) => {
+    setStatus(event.target.value as StatusType);
+  };
 
   const navigate = useNavigate();
   const { user } = useAdminStore();
@@ -25,15 +24,14 @@ const DisplayMembers = () => {
     navigate("/signin");
   }
 
+  const [searchValue, setSearchValue] = useState("");
+
   // Event handler for changes in the search  input
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  const handleStatusChange = (event: SelectChangeEvent<StatusType>) => {
-    setStatus(event.target.value as StatusType);
-  };
-
+  const membersQuery = useFetchMembers(status);
   // Filter members based on search value
   const filteredMembers = membersQuery.data?.filter((member) =>
     member.name.toLowerCase().includes(searchValue.toLowerCase()),
@@ -58,7 +56,6 @@ const DisplayMembers = () => {
             onChange={handleSearchInputChange}
           />
 
-          {/* <p className="text-lg text-gray-700">Search Term: {searchValue}</p> */}
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="status-filter-label">Status</InputLabel>
             <Select
