@@ -1,6 +1,7 @@
 import { supabase } from "../supabaseClient";
 import { MemberFormWithAddress } from "../models/Members";
 import { DisplayMemberEditWithAddressAndIdType } from "../models/Members";
+
 export const fetchMembers = async (status: string) => {
   let query = supabase.from("membership").select("*");
   if (status !== "") {

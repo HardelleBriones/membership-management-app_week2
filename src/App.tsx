@@ -7,6 +7,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import AdminProfile from "./components/AdminProfile";
+
 function App() {
   return (
     <>

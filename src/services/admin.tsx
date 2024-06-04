@@ -2,6 +2,7 @@ import { supabase } from "../supabaseClient";
 import { UserInfo } from "../interface/userTypes";
 import { InsertAdmin } from "../models/Admin";
 import { UserInfoNoId } from "../interface/userTypes";
+
 export const addAdmin = async (newMember: InsertAdmin) => {
   const { data, error } = await supabase
     .from("profiles")
