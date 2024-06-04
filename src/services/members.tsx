@@ -1,6 +1,6 @@
 import { supabase } from "../supabaseClient";
 import { MemberFormWithAddress } from "../models/Members";
-import { DisplayMemberEditWithAddressType } from "../models/Members";
+import { DisplayMemberEditWithAddressAndIdType } from "../models/Members";
 export const fetchMembers = async (status: string) => {
   let query = supabase.from("membership").select("*");
   if (status !== "") {
@@ -40,22 +40,23 @@ export const getMemberProfile = async (id: number) => {
 
   if (error) {
     console.error("Error fetching member profile:", error);
-  } 
+  }
   return data;
 };
 
 export const updateMemberProfile = async (
-  member: DisplayMemberEditWithAddressType,
+  member: DisplayMemberEditWithAddressAndIdType,
 ) => {
+  const { id, ...editData } = member;
   const { data, error } = await supabase
     .from("membership")
-    .update([member])
-    .eq("email", member.email)
+    .update([editData])
+    .eq("id", id)
     .select();
 
   if (error) {
     console.error("Error fetching member profile:", error);
-  } 
+  }
   return data;
 };
 

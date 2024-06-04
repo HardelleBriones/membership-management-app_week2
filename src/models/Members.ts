@@ -82,3 +82,11 @@ export const DisplayMemberEditWithAddress = DisplayMemberEdit.extend({
 export type DisplayMemberEditWithAddressType = z.infer<
   typeof DisplayMemberEditWithAddress
 >;
+
+export const DisplayMemberEditWithAddressAndId = DisplayMemberEdit.extend({
+  address: HasAddressSchema,
+}).merge(HasIDSchema);
+
+export type DisplayMemberEditWithAddressAndIdType = z.infer<
+  typeof DisplayMemberEditWithAddressAndId
+>;

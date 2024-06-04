@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import {
   DisplayMemberEditWithAddress,
   DisplayMemberEditWithAddressType,
+  DisplayMemberEditWithAddressAndIdType,
 } from "../models/Members";
 
 const MemberProfile = () => {
@@ -24,13 +25,19 @@ const MemberProfile = () => {
   const navigate = useNavigate();
 
   const editMemberMutation = useEditMember();
+
   const handleOnSubmit = async (
     memberUpdateData: DisplayMemberEditWithAddressType,
   ) => {
+    const updateMemberData: DisplayMemberEditWithAddressAndIdType = {
+      id: Number(id),
+      ...memberUpdateData,
+    };
+
     try {
       const confirmedEdit = window.confirm("Do you want to save changes?");
       if (confirmedEdit) {
-        await editMemberMutation.mutateAsync(memberUpdateData);
+        await editMemberMutation.mutateAsync(updateMemberData);
         return navigate("/");
       }
     } catch (error) {
