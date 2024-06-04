@@ -3,14 +3,12 @@ import { Box, TextField, Button } from "@mui/material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CircularProgress } from "@mui/material";
-import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { DevTool } from "@hookform/devtools";
 import { Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar } from "@mui/material";
-import { useMemberStore } from "../store/member-store";
 import { useEditMember } from "../hooks/useEditMember";
 import { useDeleteMember } from "../hooks/useDeleteMember";
 import { useGetMember } from "../hooks/useGetMember";
@@ -24,8 +22,6 @@ const MemberProfile = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
-
-  const memberProfile = useGetMember(Number(id));
 
   const editMemberMutation = useEditMember();
   const handleOnSubmit = async (
@@ -66,8 +62,9 @@ const MemberProfile = () => {
     resolver: zodResolver(DisplayMemberEditWithAddress),
   });
 
+  const memberProfile = useGetMember(Number(id));
   if (!memberProfile) {
-    return <CircularProgress />; // Or any loading indicator of your choice
+    return <CircularProgress />;
   }
 
   return (
